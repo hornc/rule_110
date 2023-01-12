@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import os
 from collections import Counter
 from functools import partial
 from tqdm import tqdm
@@ -45,23 +46,23 @@ def change_colors_final_t(x):
 
 change_colors_final = np.vectorize(change_colors_final_t)
 
-
+path = os.path.dirname(__file__)
 blocks_names = list("ABCDEFGHIJKL")
 all_blocks = {
-    name: change_colors(np.array(Image.open(f"./blocks/{name}.png"))) for name in blocks_names
+    name: change_colors(np.array(Image.open(f"{path}/blocks/{name}.png"))) for name in blocks_names
 }
 
 
 standard_blocks_names = list("DEFGHIJKL")
 standard_blocks = {
-    name: change_colors(np.array(Image.open(f"./blocks/{name}.png"))) for name in standard_blocks_names
+    name: change_colors(np.array(Image.open(f"{path}/blocks/{name}.png"))) for name in standard_blocks_names
 }
 
 
 left_block_names = list("AB")
 
 
-C_block_raw = np.array(Image.open(f"./blocks/C.png"))
+C_block_raw = np.array(Image.open(f"{path}/blocks/C.png"))
 zero = None
 
 
